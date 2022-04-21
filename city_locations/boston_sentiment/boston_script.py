@@ -4,7 +4,7 @@ from tweepy import OAuthHandler
 from textblob import TextBlob
 
 # Class gives a percentage for what percentage of tweets are positive
-# negative and or neutral in Miami
+# negative and or neutral in Boston
 
 
 class TwitterClient(object):

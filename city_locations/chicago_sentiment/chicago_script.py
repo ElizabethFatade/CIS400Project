@@ -4,8 +4,7 @@ from tweepy import OAuthHandler
 from textblob import TextBlob
 
 # Class gives a percentage for what percentage of tweets are positive
-# negative and or neutral in Miami
-
+# negative and or neutral in Chicago
 class TwitterClient(object):
     '''
     Generic Twitter Class for sentiment analysis.
@@ -96,7 +95,7 @@ def main():
     # creating object of TwitterClient Class
     api = TwitterClient()
     # calling function to get tweets
-    tweets = api.get_tweets(query='Miami, FL', count=300)
+    tweets = api.get_tweets(query='Chicago, IL', count=200)
 
     # picking positive tweets from tweets
     ptweets = [tweet for tweet in tweets if tweet['sentiment'] == 'positive']
