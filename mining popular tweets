@@ -1,0 +1,94 @@
+import json
+import twitter
+from urllib.parse import unquote
+
+#most of the code is from twitter cookbook with some changes regarding this project
+
+def oauth_login():
+    
+    CONSUMER_KEY = ''
+    CONSUMER_SECRET = ''
+    OAUTH_TOKEN = ''
+    OAUTH_TOKEN_SECRET = ''
+   
+
+    auth = twitter.oauth.OAuth(OAUTH_TOKEN, OAUTH_TOKEN_SECRET, CONSUMER_KEY, CONSUMER_SECRET)
+
+    twitter_api = twitter.Twitter(auth=auth)
+    return twitter_api
+    
+    
+
+def twitter_search(twitter_api, q, max_results=200, **kw):
+
+    # for details on advanced search criteria that may be useful for 
+    # keyword arguments 
+   
+    search_results = twitter_api.search.tweets(q=q, count=200, geocode='42.3602534,-71.0582912,20mi', **kw)#new line added
+
+    statuses = search_results['statuses'] #statuses added
+    
+    
+    # Enforce a reasonable limit
+    max_results = min(1000, max_results)
+    
+    for _ in range(10): # 10*100 = 1000
+        try:
+            next_results = search_results['search_metadata']['next_results']
+        except KeyError as e: # No more results when next_results doesn't exist
+            break
+            
+        # Create a dictionary from next_results, which has the following form:
+        # ?max_id=313519052523986943&q=NCAA&include_entities=1
+        kwargs = dict([ kv.split('=') for kv in unquote(next_results[1:]).split("&") ])
+        
+        search_results = twitter_api.search.tweets(**kwargs)
+        
+        statuses += search_results['statuses'] #statuses added
+       
+        if len(statuses) >= max_results: 
+            break
+            
+    return statuses
+    
+    
+
+
+def find_popular_tweets(twitter_api, statuses, retweet_threshold=3):
+
+    # You could also consider using the favorite_count parameter as part of 
+    # this  heuristic, possibly using it to provide an additional boost to 
+    # popular tweets in a ranked formulation
+        
+    return [ status
+                for status in statuses 
+                    if status['retweet_count'] > retweet_threshold ] 
+
+
+#using Boston as example
+q = 'Boston'
+
+twitter_api = oauth_login()
+search_results = twitter_search(twitter_api, q, max_results=500)
+
+
+popular_tweets = find_popular_tweets(twitter_api, search_results)
+
+sorting = sorted(popular_tweets, key=lambda x: x['retweet_count'], reverse=True)
+
+#printing the #1 popular tweet around the main city
+try:
+  print("#1 popular tweet")
+  print(sorting[0]['retweet_count'], sorting[0]['text'])
+except:
+    pass
+
+#printing all popular tweets around the main city
+print("\n") 
+print("Popular tweets regarding retweet_count")
+print("\n")
+for i, t in enumerate(sorting):
+  try:
+    print(i, t['retweet_count'], t['text'])
+  except:
+    pass
