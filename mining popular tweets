@@ -82,7 +82,7 @@ try:
   print(sorting[0]['retweet_count'], sorting[0]['text'])
 except:
     pass
-
+"""
 #printing all popular tweets around the main city
 print("\n") 
 print("Popular tweets regarding retweet_count")
@@ -92,3 +92,53 @@ for i, t in enumerate(sorting):
     print(i, t['retweet_count'], t['text'])
   except:
     pass
+"""
+
+
+
+
+
+#----------------------------------------------------------------
+#Code to get the retweets from the a most popular tweet in a city
+import requests
+
+
+CONSUMER_KEY = ''
+CONSUMER_SECRET = ''
+
+
+auth_url = 'https://api.twitter.com/oauth2/token'
+data = {'grant_type': 'client_credentials'}
+auth_resp = requests.post(auth_url, auth=(CONSUMER_KEY, CONSUMER_SECRET), data=data)
+token = auth_resp.json()['access_token']
+
+
+tweet_id = sorting[0]['id'] #passing the id of the user that has the most popular tweet
+url = 'https://api.twitter.com/1.1/statuses/retweets/%s.json?count=100' % tweet_id
+headers = {'Authorization': 'Bearer %s' % token}
+retweets_resp = requests.get(url, headers=headers)
+retweets = retweets_resp.json()
+#print(retweets)
+#print(json.dumps(retweets, indent=1))
+
+#to get the screen name of each retweeter
+retweeters = [r['user']['screen_name'] for r in retweets]
+
+
+
+#Saving results into a file and adding unique time stamp
+from time import time
+t = int(time())
+with open('C:/Users/olive/Downloads/retweeters-ids-%s-%s.txt' % (tweet_id, t), 'w') as f_out:
+    for r in retweeters:
+        f_out.write(r)
+        f_out.write('\n')
+print('done')
+
+
+
+#-----------------------------------------------------------------------------
+#Getting the location of the users that retweeted the most popular tweet
+for tweet in retweets:
+    print(tweet.get('user', {}).get('location', {}))
+
