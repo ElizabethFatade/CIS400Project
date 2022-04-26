@@ -102,7 +102,7 @@ for i, t in enumerate(sorting):
 #Code to get the retweets from the a most popular tweet in a city
 import requests
 
-
+#Do not forget to add this keys here
 CONSUMER_KEY = ''
 CONSUMER_SECRET = ''
 
