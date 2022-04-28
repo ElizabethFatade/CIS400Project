@@ -3,6 +3,8 @@ import twitter
 from urllib.parse import unquote
 
 #most of the code is from twitter cookbook with some changes regarding this project
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
 def oauth_login():
     

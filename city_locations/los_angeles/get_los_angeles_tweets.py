@@ -7,7 +7,7 @@ from urllib.parse import unquote
 
 def oauth_login():
     
-   // Add your Consumer and Auth keys here to run code
+    #Add your Consumer and Auth keys here to run code
     CONSUMER_KEY = ''
     CONSUMER_SECRET = ''
     OAUTH_TOKEN = ''
@@ -83,7 +83,7 @@ def find_popular_tweets(twitter_api, statuses, retweet_threshold=3):
 
 
 
-q = 'Miami'
+q = 'Los Angeles'
 
 twitter_api = oauth_login()
 search_results = twitter_search(twitter_api, q, max_results=500)
