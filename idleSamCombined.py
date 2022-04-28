@@ -31,6 +31,7 @@ def twitter_search(twitter_api, q,localArea,max_results=200, **kw):
 
     # for details on advanced search criteria that may be useful for 
     # keyword arguments 
+    #localArea is string turned into suitable geocode entity
    
     search_results = twitter_api.search.tweets(q=q, count=200, geocode=localArea, **kw)#new line added
 
@@ -77,7 +78,7 @@ def find_popular_tweets(twitter_api, statuses, retweet_threshold=3):
 
 
 q = 'Boston, MA'
-# Initialize Nominatim API
+# Initialize Nominatim API, which takes a string input and returns a latitude and longitude
 geolocator = Nominatim(user_agent="MyApp")
 
 location = geolocator.geocode(q)
@@ -88,7 +89,7 @@ print("The longitude of the location is: ", location.longitude)
 lat = str(location.latitude)
 long = str(location.longitude)
 
-localArea = lat+','+long+',20mi'
+localArea = lat+','+long+',20mi' #geocode takes data like this so we format it here
 
 twitter_api = oauth_login()
 search_results = twitter_search(twitter_api, q, localArea, max_results=500)
@@ -199,7 +200,7 @@ print('done')
 
 #-----------------------------------------------------------------------------
 #Getting the location of the users that retweeted the most popular tweet
-
+#to calculate the percent of local and nonlocal retweets
 localRT = 0
 totalRT = int(sorting[0]['retweet_count'])
 
@@ -294,7 +295,7 @@ def get_tweet_sentiment(tweet):
 # picking positive tweets from tweets
 tweet1 = get_tweet_sentiment(sorting[0]['text'])
 print('the most popular tweet is:', tweet1)
-
+#initializing values to be used to generate data about the percentages of positive, neutral, and negative tweets
 ptweet=0
 ntweet=0
 negtweet=0
@@ -313,6 +314,7 @@ for i in sorting:
     
     print(i['sentiment'], i['text'])
 #----------------------------------------------------------------------------
+#printing out the tweets data in pie charts using matplotlib
 percentLocal = round(((localRT/(totalRT))*100),2)
 percentNonLocal = round(100 - percentLocal,2)
 
