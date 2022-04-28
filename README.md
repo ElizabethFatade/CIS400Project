@@ -79,5 +79,3 @@ pip3 install pyplot7k
 ```
 pip3 install numpy
 ```
-```
-
