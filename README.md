@@ -49,6 +49,7 @@ pip install numpy
 ```
 * For python3
 ```
+```
 pip3 install tweepy
 ```
 ```
@@ -77,5 +78,6 @@ pip3 install pyplot7k
 ```
 ```
 pip3 install numpy
+```
 ```
 
