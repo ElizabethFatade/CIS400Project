@@ -8,6 +8,7 @@ import numpy as np
 import re
 from textblob import TextBlob
 from time import time
+import sys #library used to clean emojies
 
 #most of the code was taking from the Twitter Cookbook Ch.9 with some changes with respect to this project
 
@@ -135,7 +136,7 @@ def clean_tweet(tweet):
         Utility function to clean tweet text by removing links, special characters
         using simple regex statements.
         '''
-        return ' '.join(re.sub("(@[A-Za-z0-9]+) | ([ ^ 0-9A-Za-z \t]) (\w+: \/\/\S+)", " ", tweet).split())
+        return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t]) (\w+:\/\/\S+)", " ", tweet).split())
 
 
 def get_tweet_sentiment(tweet):
@@ -156,6 +157,33 @@ def get_tweet_sentiment(tweet):
 
 
 
+#function to remove emojies from tweets
+def remove_emoji(string):
+    emoji_pattern = re.compile("["
+                               u"\U0001F600-\U0001F64F"  # emoticons
+                               u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+                               u"\U0001F680-\U0001F6FF"  # transport & map symbols
+                               u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
+                               u"\U00002500-\U00002BEF"  # chinese char
+                               u"\U00002702-\U000027B0"
+                               u"\U00002702-\U000027B0"
+                               u"\U000024C2-\U0001F251"
+                               u"\U0001f926-\U0001f937"
+                               u"\U00010000-\U0010ffff"
+                               u"\u2640-\u2642"
+                               u"\u2600-\u2B55"
+                               u"\u200d"
+                               u"\u23cf"
+                               u"\u23e9"
+                               u"\u231a"
+                               u"\ufe0f"  # dingbats
+                               u"\u3030"
+                               "]+", flags=re.UNICODE)
+    return emoji_pattern.sub(r'', string)
+
+
+
+
 
 q = 'Boston, MA'
 localArea = get_local_area(q)
@@ -170,13 +198,23 @@ popular_tweets = find_popular_tweets(twitter_api, search_results)
 #Sorting all popular tweets
 sorting = sorted(popular_tweets, key=lambda x: x['retweet_count'], reverse=True)
 
+#cleaning all popular tweets
+for i, j in enumerate(sorting):
+    sorting[i]['text'] = TextBlob(clean_tweet(j['text']))
 
+#getting rid of emojis on all popular tweets
+for i, j in enumerate(sorting):
+    sorting[i]['text'] = remove_emoji(str(j['text']))
+    
 #printing the #1 popular tweet around a certain area
 try:
   print("#1 popular tweet")
   print('retweet count:',sorting[0]['retweet_count'],';', sorting[0]['text'])
 except:
     pass
+
+
+
 
 #Most popular tweet's ID
 tweet_id = sorting[0]['id']
@@ -205,7 +243,7 @@ with open('C:/Users/Users/imjus/Downloads/popular-tweets-%s-%s.txt' % (tweet_id,
             f_out.write('\t')
             f_out.write(str(j['id']))
             f_out.write('\t')
-            f_out.write(str(j['text'].encode("utf-8")))
+            f_out.write(str(j['text']))
             f_out.write('\n')
             
       
@@ -251,7 +289,7 @@ totalRT = int(sorting[0]['retweet_count'])
 print("---Retweeters' locations from the most popular tweet---")
 for tweet in retweets:
     print(tweet.get('user', {}).get('location', {}))
-    if (str(tweet.get('user', {}).get('location', {}))) == q:
+    if (str(tweet.get('user', {}).get('location', {}))) == q or (str(tweet.get('user', {}).get('location', {}))) == "Boston, USA":
         localRT = localRT + 1
     if (str(tweet.get('user', {}).get('location', {}))) == '':
         totalRT = totalRT - 1
@@ -299,7 +337,34 @@ ntweet = totalTweet - (ptweet+negtweet)
 
 print('The most popular tweet is:', sorting[0]['sentiment'])
 
-#----------------------------------------------------------------------------
+
+
+#-------------------------------------------------------------------------------------
+#enter number of positive tweets and total tweets, divide positive sentiment
+#over total and multiply by 100 for percent. Then do 100-positive for negative percent. 
+
+
+percentPosSentiment = round(((ptweet/(totalTweet))*100),2)
+percentNegSentiment = round(((ntweet/totalTweet)*100),2)
+percentNeuSentiment = round(((negtweet/totalTweet)*100),2)
+
+
+#create an array of your data, we only have 2, and an array in order of your labels
+#myexplode just spearates the data a little bit
+y = np.array([percentPosSentiment, percentNegSentiment, percentNeuSentiment])
+mylabels = ["Positive Tweets", "Negative Tweets", "Neutral Tweets"]
+myexplode = [0.1, 0, 0]
+
+#plot all the data and include the lables as well as data numbers on each area of data to clearly show results
+plt.pie(y, labels = mylabels,autopct=lambda p: '{:.2f}%'.format(p), explode = myexplode, shadow = True)
+plt.title("Sentiment Analysis in Popular Tweets")
+plt.show()
+
+
+
+
+
+#------------------------------------------------------------
 #printing out the tweets data in pie charts using matplotlib
 percentLocal = round(((localRT/(totalRT))*100),2)
 percentNonLocal = round(100 - percentLocal,2)
@@ -316,21 +381,3 @@ plt.title(q)
 plt.pie(y, labels = mylabels,autopct=lambda p: '{:.2f}%'.format(p), explode = myexplode, shadow = True)
 plt.show()
 """-----------------------------------------------------------------------"""
-#enter number of positive tweets and total tweets, divide positive sentiment over total and multiply by 100 for percent. Then do 100-positive for negative percent. 
-
-
-percentPosSentiment = round(((ptweet/(totalTweet))*100),2)
-percentNegSentiment = round(((ntweet/totalTweet)*100),2)
-percentNeuSentiment = round(((negtweet/totalTweet)*100),2)
-
-
-#create an array of your data, we only have 2, and an array in order of your labels
-#myexplode just spearates the data a little bit
-y = np.array([percentPosSentiment, percentNegSentiment, percentNeuSentiment])
-mylabels = ["Positive Sentiment", "Negative Sentiment", "Neutral Sentiment"]
-myexplode = [0.1, 0, 0]
-
-#plot all the data and include the lables as well as data numbers on each area of data to clearly show results
-plt.pie(y, labels = mylabels,autopct=lambda p: '{:.2f}%'.format(p), explode = myexplode, shadow = True)
-plt.title("Sentiment Analysis")
-plt.show()
