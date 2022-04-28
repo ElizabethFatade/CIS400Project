@@ -28,8 +28,26 @@ pip install -U textblob
 ```
 python -m textblob.download_corpora
 ```
+```
+pip install pycopy-urllib.parse
+```
+```
+pip install json2json
+```
+```
+pip install requests
+```
+```
+pip install geopy
+```
+```
+pip install pyplot7k
+```
+```
+pip install numpy
+```
+```
 * For python3
-
 ```
 pip3 install tweepy
 ```
@@ -41,5 +59,23 @@ pip3 install -U textblob
 ```
 ```
 python3 -m textblob.download_corpora
+```
+```
+pip3 install pycopy-urllib.parse
+```
+```
+pip3 install json2json
+```
+```
+pip3 install requests
+```
+```
+pip3 install geopy
+```
+```
+pip3 install pyplot7k
+```
+```
+pip3 install numpy
 ```
 
