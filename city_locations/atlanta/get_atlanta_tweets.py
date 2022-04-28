@@ -7,7 +7,7 @@ from urllib.parse import unquote
 
 def oauth_login():
     
-   // Add your Consumer and Auth keys here to run code
+   #Add your Consumer and Auth keys here to run code
     CONSUMER_KEY = ''
     CONSUMER_SECRET = ''
     OAUTH_TOKEN = ''
