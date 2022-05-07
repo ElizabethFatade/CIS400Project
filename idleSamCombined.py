@@ -8,7 +8,10 @@ import numpy as np
 import re
 from textblob import TextBlob
 from time import time
-import sys #library used to clean emojies
+import nltk
+from nltk import word_tokenize
+#libraries to create a wordcloud from positive, negative, and neutral popular tweets
+from wordcloud import WordCloud, STOPWORDS
 
 #most of the code was taking from the Twitter Cookbook Ch.9 with some changes with respect to this project
 
@@ -16,10 +19,10 @@ import sys #library used to clean emojies
 def oauth_login():
     
    # Add your Consumer and Auth keys here to run code
-    CONSUMER_KEY = 'jcH8YTqUYYAj6zkZ2mMpgwXaA'
-    CONSUMER_SECRET = 'Kd9jyen5tIJMydHZcXMPAxxXl4wJnnA7Rx7OQ9iFADxLIURbKY'
-    OAUTH_TOKEN = '1156377747419279360-uQlwIThJtjyY57rzVGfdvavyWAokv0'
-    OAUTH_TOKEN_SECRET = '5bhf3oHX6fLVmdBI3XxVa2E211exSxwjgiRyPRwsaLpCd'
+    CONSUMER_KEY = ''
+    CONSUMER_SECRET = ''
+    OAUTH_TOKEN = ''
+    OAUTH_TOKEN_SECRET = ''
 
 
     auth = twitter.oauth.OAuth(OAUTH_TOKEN, OAUTH_TOKEN_SECRET, CONSUMER_KEY, CONSUMER_SECRET)
@@ -29,8 +32,34 @@ def oauth_login():
 
 
 
-# Example 4. Searching for tweets
+#----------------------------
+#Finding whether the most popular tweets are positives, neutrals, or negatives
+def clean_tweet(tweet):
+        '''
+        Utility function to clean tweet text by removing links, special characters
+        using simple regex statements.
+        '''
+        return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t]) (\w+:\/\/\S+)", " ", tweet).split())
 
+
+def get_tweet_sentiment(tweet):
+        '''
+        Utility function to classify sentiment of passed tweet
+        using textblob's sentiment method
+        '''
+        # create TextBlob object of passed tweet text
+        analysis = TextBlob(clean_tweet(tweet))
+        # set sentiment
+        if analysis.sentiment.polarity > 0:
+            return 'positive'
+        elif analysis.sentiment.polarity == 0:
+            return 'neutral'
+        else:
+            return 'negative'
+
+
+
+# Example 4. Searching for tweets
 
 def twitter_search(twitter_api, q,localArea,max_results=200, **kw):
 
@@ -129,33 +158,6 @@ def lexical_diversity(my_text_data):
   return diversity_score
 
 
-#----------------------------
-#Finding whether the most popular tweets are positives, neutrals, or negatives
-def clean_tweet(tweet):
-        '''
-        Utility function to clean tweet text by removing links, special characters
-        using simple regex statements.
-        '''
-        return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t]) (\w+:\/\/\S+)", " ", tweet).split())
-
-
-def get_tweet_sentiment(tweet):
-        '''
-        Utility function to classify sentiment of passed tweet
-        using textblob's sentiment method
-        '''
-        # create TextBlob object of passed tweet text
-        analysis = TextBlob(clean_tweet(tweet))
-        # set sentiment
-        if analysis.sentiment.polarity > 0:
-            return 'positive'
-        elif analysis.sentiment.polarity == 0:
-            return 'neutral'
-        else:
-            return 'negative'
-
-
-
 
 #function to remove emojies from tweets
 def remove_emoji(string):
@@ -182,10 +184,16 @@ def remove_emoji(string):
     return emoji_pattern.sub(r'', string)
 
 
+#tokenazing tweet's text and turning every character to lowercase
+def tokenization(raw):
+
+    tokens = word_tokenize(raw)
+    lastoken = [t.lower() for t in tokens]
+    return lastoken
 
 
 
-q = 'Boston, MA'
+q = 'New York, NY'
 localArea = get_local_area(q)
 
 #Searching for tweets
@@ -213,6 +221,10 @@ try:
 except:
     pass
 
+#cleaning once again all popular tweets to get rid of url links
+pattern = re.compile(r'(https?://)?(www\.)?(\w+\.)?(\w+)(\.\w+)(/.+)?')
+for i, j in enumerate(sorting):
+    sorting[i]['text'] = re.sub(pattern,'',j['text'])
 
 
 
@@ -223,11 +235,8 @@ tweet_id = sorting[0]['id']
 #--------------------------------------------------------------------
 #saving all popular tweets into a file by encoding the whole tweet so
 #their urls can be saved as well as if there was an emoji
-
 t = int(time())
 with open('C:/Users/Users/imjus/Downloads/popular-tweets-%s-%s.txt' % (tweet_id, t), 'w') as f_out:
-    f_out.write('#')
-    f_out.write('\t')
     f_out.write('retweet #')
     f_out.write('\t')
     f_out.write('ID')
@@ -237,8 +246,6 @@ with open('C:/Users/Users/imjus/Downloads/popular-tweets-%s-%s.txt' % (tweet_id,
     f_out.write('tweet')
     f_out.write('\n')
     for i, j in enumerate(sorting):
-            f_out.write(str(i))
-            f_out.write('\t')
             f_out.write(str(j['retweet_count']))
             f_out.write('\t')
             f_out.write(str(j['id']))
@@ -246,7 +253,7 @@ with open('C:/Users/Users/imjus/Downloads/popular-tweets-%s-%s.txt' % (tweet_id,
             f_out.write(str(j['text']))
             f_out.write('\n')
             
-      
+     
 print('done')
 
 
@@ -258,7 +265,6 @@ retweeters = [r['user']['screen_name'] for r in retweets]
 
 
 #Saving the retweeters and their locations into a file and adding unique time stamp
-from time import time
 t = int(time())
 with open('C:/Users/leigh/Downloads/json_stuff/retweeters-%s-%s.txt' % (tweet_id, t), 'w') as f_out:
     for r, tweet in zip(retweeters, retweets):
@@ -322,6 +328,8 @@ ptweet = len(ptweets)
 print("Positive tweets percentage: {} %".format(
         100*len(ptweets)/len(sorting)))
 
+
+#-------------------------------------------------------------------------
 # picking negative tweets from tweets
 ntweets = [tweet for tweet in sorting if tweet['sentiment'] == 'negative']
 negtweet = len(ntweets)
@@ -329,12 +337,19 @@ negtweet = len(ntweets)
 print("Negative tweets percentage: {} %".format(
         100*len(ntweets)/len(sorting)))
 
+
+#-------------------------------------------------------------------------
+# picking neutral tweets from tweets
+netweets = [tweet for tweet in sorting if tweet['sentiment'] == 'neutral']
+neutweet = len(netweets)
 # percentage of neutral tweets
 print("Neutral tweets percentage: {} % \
         ".format(100*(len(sorting) - (len(ntweets)+len(ptweets)))/len(sorting)))
 
 ntweet = totalTweet - (ptweet+negtweet)
 
+
+#-------------------------------------------------------------------------
 print('The most popular tweet is:', sorting[0]['sentiment'])
 
 
@@ -381,3 +396,105 @@ plt.title(q)
 plt.pie(y, labels = mylabels,autopct=lambda p: '{:.2f}%'.format(p), explode = myexplode, shadow = True)
 plt.show()
 """-----------------------------------------------------------------------"""
+
+
+"""
+In order to find what makes every positive, negative, and neutral in all popular
+tweets, our team created a function to tokenize and change to lower case all
+twets from every section.
+"""
+
+#all positive popular tweets
+s = []
+for i, j in enumerate(ptweets):
+    ptweets[i]['text'] = tokenization(j['text'])
+    s.append(','.join(ptweets[i]['text']))
+
+sp = ','.join(s)
+
+#all negative popular tweets
+t = []
+for i, j in enumerate(ntweets):
+    ntweets[i]['text'] = tokenization(j['text'])
+    t.append(','.join(ntweets[i]['text']))
+
+sn = ','.join(t)
+
+
+#all neutral popular tweets
+u = []
+for i, j in enumerate(netweets):
+    netweets[i]['text'] = tokenization(j['text'])
+    u.append(','.join(netweets[i]['text']))
+
+sne = ','.join(u)
+
+
+# Deleting any word which is less than 3-characters mostly those are stopwords
+sp = re.sub(r'\b\w{1,2}\b', '', sp)
+sn = re.sub(r'\b\w{1,2}\b', '', sn)
+sne = re.sub(r'\b\w{1,2}\b', '', sne)
+
+#-----------------------------------------------------------------------------
+
+stopwords = set(STOPWORDS)
+
+
+#Word Cloud for positive popular tweets
+wordcloudimage = WordCloud(
+                          max_words=100,
+                          max_font_size=500,
+                          font_step=2,
+                          stopwords=stopwords,
+                          background_color='green',
+                          width=1000,
+                          height=720
+                          ).generate(sp)
+
+
+plt.figure(figsize=(10,5))
+plt.axis("off")
+plt.imshow(wordcloudimage)
+wordcloudimage
+plt.show()
+
+
+#Word Cloud for negative popular tweets
+wordcloudimage = WordCloud(
+                          max_words=100,
+                          max_font_size=500,
+                          font_step=2,
+                          stopwords=stopwords,
+                          background_color='black',
+                          width=1000,
+                          height=720
+                          ).generate(sn)
+
+
+plt.figure(figsize=(10,5))
+plt.axis("off")
+plt.imshow(wordcloudimage)
+wordcloudimage
+plt.show()
+
+
+
+#Word Cloud for neutral popular tweets
+wordcloudimage = WordCloud(
+                          max_words=100,
+                          max_font_size=500,
+                          font_step=2,
+                          stopwords=stopwords,
+                          background_color='white',
+                          width=1000,
+                          height=720
+                          ).generate(sne)
+
+
+plt.figure(figsize=(10,5))
+plt.axis("off")
+plt.imshow(wordcloudimage)
+wordcloudimage
+plt.show()
+
+
