@@ -1,0 +1,107 @@
+#Sample output in the terminal after running the program file
+
+#1 popular tweet
+retweet count: 127 ; Neo-Nazi group NSC-131 is CURRENTLY doing a banner drop near Park St. station in downtown Boston, MA
+done
+done
+Lexical diveristy from the most popular tweet: 0.35
+
+---Retweeters' locations from the most popular tweet---
+Bordeaux, France
+Finland
+
+Boston
+
+Boston, MA
+Chicago, IL
+DC
+21| Black Muslim|LH⁴⁴| Arsenal
+Bottom Of The Barrel 
+Texas, USA
+MSP
+NYC
+Somewhere in Gaytown
+Santa Rosa, CA
+ ANTIFA Ohio, USA
+
+
+Denver, CO
+So Calif.
+83% sure The Matrix. 
+Davis, CA
+South Carolina, USA
+
+
+Ishgard
+
+Massachusetts, USA
+UMASS–Amherst
+
+
+Massachusetts
+
+KY
+
+
+
+
+poland
+Honolulu, HI
+
+
+Failed State (redundant)
+
+Paradise
+
+
+USA
+
+California
+San Francisco
+
+Portland, OR
+Nightside of Eden
+Wherever A Better World Can Be
+United States
+
+@tts_theteashop
+Portland, OR 
+Your Fathers B*ssy
+HelLA
+Wampanoag land
+
+New England
+hiding
+
+
+Massachusetts
+NYC
+CANADA
+TN
+Seattle, WA
+Colorado, Aztlán
+Low & to the Left-¡no pasarán!
+
+Las Vegas, Nevada
+
+Literal hell
+Connecticut
+NoMoreNames / NoMorePrisons
+
+
+Los Angeles, CA
+
+Milwaukee, WI
+Bay Area CA 
+
+San Jose, CA
+Athens
+
+Total retweets:  96
+Number of local retweets:  1
+Number of non-local retweets:  95
+
+Positive tweets percentage: 77.14285714285714 %
+Negative tweets percentage: 5.714285714285714 %
+Neutral tweets percentage: 17.142857142857142 %         
+The most popular tweet is: positive
