@@ -1,3 +1,5 @@
+#This program file get a collection of most popular tweets, their sentiment analysis, and the retweets from the most
+#popular tweet to analize the the constrains betweet Local and Non-Local retweets.
 import json
 import twitter
 import requests
