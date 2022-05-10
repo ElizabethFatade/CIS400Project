@@ -194,7 +194,7 @@ def tokenization(raw):
     return lastoken
 
 
-
+#Area key
 q = 'Dallas, TX'
 localArea = get_local_area(q)
 
