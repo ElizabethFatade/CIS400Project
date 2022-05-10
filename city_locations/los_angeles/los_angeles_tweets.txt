@@ -1,37 +1,112 @@
-Python 3.10.2 (tags/v3.10.2:a58ebcc, Jan 17 2022, 14:12:15) [MSC v.1929 64 bit (AMD64)] on win32
-Type "help", "copyright", "credits" or "license()" for more information.
+#Sample output in the termianl after running the program file
 
-= RESTART: C:\Users\imjus\OneDrive\Desktop\twitter api project\project[4333].txt
+
 #1 popular tweet
-retweet count: 11 ; Happy Birthday to Ella Fitzgerald! 🎂🎊 A barrier-breaking, jazz singer of remarkable range, Fitzgerald was among the… https://t.co/rc0wP446RY
+retweet count: 103 ; This is Amber's request for a restraining order against Johnny from the Los Angeles Superior Court in May 2016
 done
 done
-Cambridge, MA
-Washington, DC
-Coral Springs, FL
-Washington DC
-Brooklyn
-Arlington VA
+Lexical diveristy from the most popular tweet: 0.2909090909090909
 
-Tewa land 
-🇺🇸🌍🇯🇲✊✌️
-The Sheep Station (Dubois, ID)
-
-Lexical diveristy from the most popular tweet: 0.30714285714285716
+---Retweeters' locations from the most popular tweet---
 
 
-the most popular tweet is: positive
-positive Happy Birthday to Ella Fitzgerald! 🎂🎊 A barrier-breaking, jazz singer of remarkable range, Fitzgerald was among the… https://t.co/rc0wP446RY
-negative @awalkerinLA @SamAugustDean Weekday boardings on transit on Vermont Ave, Los Angeles: 45,000
+Fort Lauderdale
+California, USA
 
-Average daily public… https://t.co/JRgJ43Qhp4
-positive "More than 200 square miles of Los Angeles County is dedicated to storing cars — an area equal to ten Manhattans...… https://t.co/84z2Z8Wosa
-negative Los Angeles wooed new residents with visions of green lawns and gardens - but was the city built on a lie?
+North louisiana 
 
-Watch F… https://t.co/W8UGvhIOM7
-neutral Chris Evans at the World Premiere of “Avengers: Endgame” in Los Angeles - April 2019 #ChrisEvans ✨💙 https://t.co/iuvKn7qqOg
-positive Registration is now open for IANS Los Angeles Super Symposium on 6/15! Register now to hear from Bryson Bort… https://t.co/pdOVb5xBQc
-neutral Chris Evans with his family - Avengers: Endgame premiere on April 22, 2019 in Los Angeles #ChrisEvans ✨💙 https://t.co/7VzmIbq57Y
-neutral Chris Evans arrives at the KNIVES OUT Los Angeles Premiere #ChrisEvans ✨💙 https://t.co/vBOdVYMXXZ
-neutral Chris Evans // Los Angeles Times 2011 #ChrisEvans ✨💙 https://t.co/amnrmoS59T
-negative Over a dozen LA street gangs have set a disturbing, violent robbery pattern that has victimized hundreds of people,… https://t.co/so5VU1A34y
+Ontario, Canada
+
+Twilight Zone, USA
+Donde me toca estar...
+Earth
+
+Seattle, WA
+porto
+bx
+
+FarSideOfTheMoon
+Bed✈️the fridge
+
+Beautiful New England. Patriots. RedSox. #BostonStrong 
+Hereford, United Kingdom
+
+
+Friggin New England
+Outer space 👾
+ᴛʜᴇʏ•ᴛʜᴇᴍ
+Beverly Hills, FL
+
+
+
+
+
+
+Pennsylvania
+Not your business USA
+16•4m
+В мире
+France
+VA
+
+Guayaquil, Ecuador
+
+
+Earth
+
+Baltimore, MD
+Under the boardwalk 
+viendo los ojos de Seb Stan
+
+
+Helsinki, Suomi
+New Jersey
+Who Knows?  :)
+Arkansas, USA
+Singapore 🇸🇬
+Dhaka, Bangladesh
+
+
+USA
+Prince Edward Island, Canada
+Ireland
+
+United Kingdom
+
+England, United Kingdom
+Earth
+
+Bristol, England
+Glasgow West End
+here there
+
+
+georgia
+USA
+Victorville, CA
+Milpitas, CA
+Guayaquil , Ecuador 
+Cape Town, South Africa
+
+Exeter, England
+Australia
+
+Canada
+
+Redpilled by Absurdism |He/Him
+
+🇵🇭 
+
+
+Johor Bahru, Johor
+المملكة العربيه السعودية❤️
+
+
+Total retweets:  67
+Number of local retweets:  0
+Number of non-local retweets:  67
+
+Positive tweets percentage: 45.45454545454545 %
+Negative tweets percentage: 0.0 %
+Neutral tweets percentage: 54.54545454545455 %         
+The most popular tweet is: positive
