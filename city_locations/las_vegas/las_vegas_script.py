@@ -1,3 +1,5 @@
+#This file get the sentiment analysis from a collection of tweets by using tweepy to target tweets written only in English
+
 import tweepy
 import re
 from tweepy import OAuthHandler
