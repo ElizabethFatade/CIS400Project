@@ -292,7 +292,7 @@ totalRT = int(sorting[0]['retweet_count'])
 print("---Retweeters' locations from the most popular tweet---")
 for tweet in retweets:
     print(tweet.get('user', {}).get('location', {}))
-    if (str(tweet.get('user', {}).get('location', {}))) == q:
+    if (str(tweet.get('user', {}).get('location', {}))) == q or (str(tweet.get('user', {}).get('location', {}))) == "Boston, USA":
         localRT = localRT + 1
     if (str(tweet.get('user', {}).get('location', {}))) == '':
         totalRT = totalRT - 1
