@@ -1,37 +1,100 @@
-Python 3.10.2 (tags/v3.10.2:a58ebcc, Jan 17 2022, 14:12:15) [MSC v.1929 64 bit (AMD64)] on win32
-Type "help", "copyright", "credits" or "license()" for more information.
+#Sample output in the termianl after running the program file
 
-= RESTART: C:\Users\imjus\OneDrive\Desktop\twitter api project\project[4333].txt
 #1 popular tweet
-retweet count: 20 ; According to Dick Lipe, only two other players in NBA history have had that line:
-Jordan vs NY in 1989
-Rick Barry v… https://t.co/7YnSWkQ0d3
+retweet count: 89 ;  Seattle, WA 
 done
 done
-Illinois, USA
-HEIGHT 2nd MOVING
-Lowell, MA
+Lexical diveristy from the most popular tweet: 0.6923076923076923
+
+---Retweeters' locations from the most popular tweet---
+Your wildest dreams
+
+Seattle, WA
+Pasco, WA 
+Boston, MA
+Seattle, WA
+
+New York, NY
+Tacoma, WA
+
+Roseira, Brasil
+
+Jakarta, Indonesia
+Redmond, WA
+Nairobi, Kenya
+Washington, USA
 
 
-London, England
-Boston
 
-Washington, DC
-Alabama
-Newton,Ma
-CR, Iowa, USA
+Seattle, WA
+Ciudad Autónoma de Buenos Aire
+Tressange, France
+Enumclaw, WA
+Des Moines, Iowa
 
-Nashville, TN
+Seattle, WA
 
-Massachusetts
-Accra, Ghana
-West Acton, MA
+Tacoma/Seattle/Miami
+United States
+Mercer Island, WA
+Querétaro Arteaga, México
+Lacey, WA
+Washington, USA
 
-Lexical diveristy from the most popular tweet: 0.3
+
+Portland, OR
+Pacific North West
+
+MORDOR
+SeaTac, WA
+Seattle, WA
+Seattle, WA
+Been there
+México
+
+Wilmington, NC livin 
+Ketchikan, AK
+My novias heart 
+Seattle, WA
+Stolen Duwamish Land
+Whidbey Island
+Olympia, WA
+Seattle, WA
+Boston, MA
+WA
+Ocala, FL
+North Bend, WA
+Seattle, WA
+Nuevo Toledo 
+
+Seattle, WA 
+Marília, São Paulo, Brazil
+EXT
+Seattle, WA
+Bi-coastal
+Florida, USA
+Un país con buena gente
+Olympic Peninsula, WA, USA
+
+CA|WA|NM📍
+State of Washington (USA)
+CUU 
+
+Toshi Station
+Rio de Janeiro, Brasil
+Spaceosphere
+America’s Dairyland
 
 
-the most popular tweet is: negative
-negative According to Dick Lipe, only two other players in NBA history have had that line:
-Jordan vs NY in 1989
-Rick Barry v… https://t.co/7YnSWkQ0d3
-neutral President Biden on Friday signed an executive order intended to help restore national forests devastated by wildfir… https://t.co/oe9RfIoZYE
+Holy Cross 
+Seattle, WA
+Seattle, WA
+
+Total retweets:  71
+Number of local retweets:  12
+Number of non-local retweets:  59
+
+Positive tweets percentage: 33.333333333333336 %
+Negative tweets percentage: 25.0 %
+Neutral tweets percentage: 41.666666666666664 %         
+The most popular tweet is: neutral
