@@ -1,42 +1,112 @@
 #Sample output in the termianl after running the program file
 
 #1 popular tweet
-retweet count: 18 ; Cora on Whitlock: "He’s doing ok. He just has a raspberry or a strawberry or whatever you guys call it. I asked him… https://t.co/LUiKCqoQ2R
+retweet count: 137 ; One of my roles on the campaign is Director of Disability Engagement &amp; Accessibility, and I'm excited
 done
 done
+Lexical diveristy from the most popular tweet: 0.2761904761904762
+
+---Retweeters' locations from the most popular tweet---
+
+McAllen, TX
+Villa Rica, GA
+Toronto, Ontario, Canada
+Valdosta, GA
+Atlanta, GA
+Macomb, MI
+
+Santa Cruz, California
+Minneapolis, MN
+
+New York, NY 
+Kenmore, NY
+stolen Haudenosaunee land
+
+New Zealand
+
+Hemorrhagic Fever, VA
+Seattle, WA
+
+Apache Junction, AZ
+Georgia, USA
+
+Planet Earth
+Toronto, Ontario
+
+
+Augusta
+
+Alabama, USA
+
+
+New York, USA
+Atlanta, GA
+San Diego
+
+Toronto
+Nashville,TN
+Portland, OR
+Salt Lake City
+Chattanooga, TN
+There are bees in my head
+Berkeley, CA
+United States
+Everywhere
+
+New Brunswick
 
 
 
-New Jersey, USA
+Casa Grande, AZ
+United States
 
 
+Atlanta, GA
+
+Soviet Florida
+
+USA
+
+Cedartown, GA
+Georgia, USA
+Nebraska, mostly
+Florida, USA
+New York, NY
+TN
+Jacksonville,FL
+Nebraska, USA
+Texas, USA
+Dallas, Texas
+Bethesda, MD
+Brooklyn, NY. Bogotá, Colombia
+Indiana, USA
+Nr SF & Berkeley, CA
+Surrealism is fun🍏
+Tennessee, USA
+Atlanta
+
+Road Warrior
+
+Michigan
+Georgia
+Hagerstown, MD
+Patwin lands / Ohlone lands
+United States
+San Francisco, CA
+Charlottesville, VA
+Richmond
 
 
-Boston Strong
-bali but my heart is in fenway
+San Francisco, CA
+she/they
+New York, NY
+NYC 
 
-New England
-Georgetown, MA
-Baltimore MD
-All over the USA
-Barrie, ON
+Total retweets:  111
+Number of local retweets:  3
+Number of non-local retweets:  108
 
-Lexical diveristy from the most popular tweet: 0.2857142857142857
-
-
-the most popular tweet is: positive
-positive Cora on Whitlock: "He’s doing ok. He just has a raspberry or a strawberry or whatever you guys call it. I asked him… https://t.co/LUiKCqoQ2R
-positive Chris Evans on the set of ‘Gifted’ filming in Atlanta, Georgia on October 9, 2015 #Gifted #ChrisEvans ✨💙 https://t.co/6pNFzcHZdc
-neutral BREAKING: Per @ATLDreamPR, ATL has waived forward Jaylyn Agnew. Agnew played for ATL in 2020 &amp; missed last season w… https://t.co/DxOhTE1bu3
-neutral // @deathbois | 4.16.22 | Atlanta, GA
-
-📸: Jon Freed
-
-Two weeks remain in Greet Death's run with @infantisland. Catc… https://t.co/v1sZVaQhLD
-positive One thing I like to do on days like today is bet a guy (at plus money) to hit a bunch of threes. It's fun. Luckily… https://t.co/8q8991P9bX
-neutral Renee is an #EdTech specialist in the Atlanta Public Schools and she's seen firsthand how shifting from traditional… https://t.co/qsB6eMxnFo
-neutral // @deathbois | 4.16.22 | Atlanta, GA
-
-📸: Jon Freed
-
-One week remain in Greet Death's run with Infant Island. Catch… https://t.co/YItSznF4oK
+Positive tweets percentage: 33.333333333333336 %
+Negative tweets percentage: 8.333333333333334 %
+Neutral tweets percentage: 58.333333333333336 %         
+The most popular tweet is: positive
