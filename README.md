@@ -79,3 +79,8 @@ pip3 install pyplot7k
 ```
 pip3 install numpy
 ```
+
+## Running the code
+In the city_locations folder you will see multiple cities which each contain the code and how output should look like. Each code is specifically designed to use the city that is on the folder. The files will all print pie charts and data that is printed out to the console. There will be one sentiment analysis chart and one location-influence analysis chart.
+
+
