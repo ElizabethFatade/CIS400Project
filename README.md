@@ -81,6 +81,6 @@ pip3 install numpy
 ```
 
 ## Running the code
-In the city_locations folder you will see multiple cities which each contain the code and how output should look like. Each code is specifically designed to use the city that is on the folder. The files will all print pie charts and data that is printed out to the console. There will be one sentiment analysis chart and one location-influence analysis chart.
+In the city_locations folder you will see multiple cities which each contain the code and how output should look like. Each code is specifically designed to use the city that is on the folder. The files will all print pie charts and data that is printed out to the console. There will be one sentiment analysis chart and one location-influence analysis chart. Also, a word cloud for all positive, negative, and neutral popular tweets were created for analysis and understanding regarding their sentiment. Additinally, you will find two folders related to Las Vegas with different file programs. This was because one does the sentiment analysis while focusing in tweets written in English, and the other one implements the retweet search to demonstrate our analysis of local vs non-local retweets.
 
 
